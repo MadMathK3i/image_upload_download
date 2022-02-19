@@ -1,0 +1,156 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet" />
+
+<style>
+@import "../static/stylesheets/file_upload.css";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css";
+</style>
+
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<div id="drag_drop_app" class="file_uploader_module">
+    <input type="file" ref="file_upload" style="display: none" @change="onFileChange" multiple>
+    <div class="drop_area" @dragenter="dragEnter" @dragleave="dragLeave" @dragover.prevent @drop.prevent="dropFile"
+        :class="{enter: isEnter}" type="button" @click="$refs.file_upload.click()">
+        <i class="fas fa-arrow-circle-up text-6xl mb-3 fa-5x upload-icon"></i>
+        <b>Drop files or Browse</b>
+    </div>
+    <ul class="flex">
+        <li class="flex-col" v-for="(file,index) in files" :key="index" @click="deleteFile(index)">
+            <div style="position: relative;">
+            </div>
+            <div class="file-box" style="display: block;">
+                <span>
+                  {% raw %} {{ file.name }} {% endraw %} 
+                <i class="fa fa-times delete-mark"></i>
+                </span>
+            </div>
+        </li>
+    </ul>
+    <div v-show="files.length">
+        <el-button v-on:click="sendFile">Send</el-button>
+    </div>
+
+    <!--
+    <button class="button" @click="download">download</button>
+    -->
+    <el-button v-on:click="download">download</el-button>
+
+    <img v-bind:src="imageName">download</img>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+
+<script>
+const drag_drop_app = new Vue({
+    el: "#drag_drop_app",
+    data: {
+        isEnter: false,
+        files: [],
+        imageName:''
+    },
+    methods: {
+        dragEnter() {
+            this.isEnter = true;
+        },
+        dragLeave() {
+            this.isEnter = false;
+        },
+        dragOver() {
+        },
+        dropFile() {
+            this.files.push(...event.dataTransfer.files)
+            this.isEnter = false;
+        },
+        deleteFile(index) {
+            this.files.splice(index, 1)
+        },
+        upload: function () {
+            // FormData を利用して File を POST する
+            let formData = new FormData();
+            formData.append('files', this.uploadFile);
+            let config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            };
+            axios
+                .post('yourUploadUrl', formData, config)
+                .then(function (response) {
+                })
+                .catch(function (error) {
+                })
+        },
+        sendFile() {
+            console.log("sending...")
+
+            this.files.forEach(file => {
+                let form = new FormData()
+                form.append("image", file, file.name)        
+                console.log(form.get('image'))
+                var config = {
+                    headers:{
+                        'content-type':'multipart/form-data'
+                    }
+                }
+                axios.post('/upload', form).then(response => {
+                    console.log("upload requested...")
+                }).catch(error => {
+                    console.log(error)
+                })
+            })
+            // let form = new FormData()
+            // form.append("image", this.files[0])        
+            // console.log(form.get('image'))
+            // var config = {
+            //     headers:{
+            //         'content-type':'multipart/form-data'
+            //     }
+            // }
+            // await axios.post('/upload', form).then(response => {
+            //     console.log("upload requested...")
+            // }).catch(error => {
+            //     console.log(error)
+            // })
+
+            // this.files.forEach(file => {
+            //     let form = new FormData()
+            //     //form.append("image", file)        
+            //     form.append("hoge", 1)        
+            //     var config = {
+            //         headers:{
+            //             'content-type':'multipart/form-data'
+            //         }
+            //     }
+            //     axios.get('/upload', form).then(response => {
+            //         console.log("upload requested...")
+            //     }).catch(error => {
+            //         console.log(error)
+            //     })
+            // })
+
+        },
+        btnclick() {
+            this.$refs.input.click();
+        },
+        onFileChange(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            this.files.push(...files)
+            console.log(files)
+        }
+        ,
+        download: function () {
+            axios.post('/download').then(response => {
+                console.log("download requested...")
+                console.log(response.data)
+                //this.imageName = "../static/downloads/alla-san.png"
+                this.imageName = `../static/downloads/${response.data}`
+            }).catch(error => {
+                console.log(error)
+            })
+        }
+    }
+})
+</script>

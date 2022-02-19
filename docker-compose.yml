@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+
+    web:
+      build: ./web
+      volumes:
+        - ./web:/app
+      ports:
+        - "5000:5000"
+      environment:
+        MYSQL_DATABASE: testingdb
+        MYSQL_USER: root
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: password
+      tty: true
+
+    db:
+      image: mysql:latest
+      restart: always
+      volumes:
+        - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+        - ./mysql/conf.d:/etc/mysql/conf.d
+        - ./mysql/log/mysql:/var/log/mysql
+      environment:
+        MYSQL_DATABASE: testing_db
+        MYSQL_USER: k3ijo
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: password
+      ports:
+        - 3307:3306    

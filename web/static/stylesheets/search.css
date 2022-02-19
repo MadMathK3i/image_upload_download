@@ -1,0 +1,539 @@
+@import url("compass/css3");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
+/* line 10, ../sass/search.scss */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 11, ../sass/search.scss */
+.clearfix:before, .clearfix:after {
+  content: '';
+  display: table;
+}
+
+/* line 12, ../sass/search.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 14, ../sass/search.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 18, ../sass/search.scss */
+body {
+  font-family: 'Poiret One', 'Roboto', 'Helvetica';
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  background: #0060b3;
+}
+
+/* line 37, ../sass/search.scss */
+.h-request {
+  position: absolute;
+  z-index: 10000;
+  top: 5px;
+  left: 50px;
+  height: 50px;
+  padding: 1rem 3rem;
+  -webkit-transform: skew(-15deg);
+  transform: skew(-15deg);
+  color: #fff;
+  background-image: -webkit-gradient(linear, left top, right top, from(#209cff), to(#68e0cf));
+  background-image: -webkit-linear-gradient(left, #209cff 0%, #68e0cf 100%);
+  background-image: linear-gradient(to right, #209cff 0%, #68e0cf 100%);
+}
+
+/* line 52, ../sass/search.scss */
+.h-spec {
+  position: absolute;
+  z-index: 10000;
+  top: 350px;
+  left: 50px;
+  height: 50px;
+  padding: 1rem 3rem;
+  -webkit-transform: skew(-15deg);
+  transform: skew(-15deg);
+  color: #fff;
+  background-image: -webkit-gradient(linear, left top, right top, from(#209cff), to(#68e0cf));
+  background-image: -webkit-linear-gradient(left, #209cff 0%, #68e0cf 100%);
+  background-image: linear-gradient(to right, #209cff 0%, #68e0cf 100%);
+}
+
+/* line 67, ../sass/search.scss */
+.result-wrap {
+  color: #333;
+  margin-top: 4.5em;
+  height: 0;
+  overflow: hidden;
+  padding: 0 10.5%;
+  background: #f1f1f1;
+  position: relative;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* line 79, ../sass/search.scss */
+input[type="search"] {
+  /* reset normalize */
+  box-sizing: border-box;
+}
+
+/* line 83, ../sass/search.scss */
+.result {
+  background: #eee;
+  padding: .7em;
+  margin-top: 1em;
+}
+
+/* line 89, ../sass/search.scss */
+a {
+  color: #000;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+/* line 94, ../sass/search.scss */
+a:hover {
+  text-decoration: line-through;
+}
+
+/* line 100, ../sass/search.scss */
+.search-bar-form {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+  transition-property: width, height, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* line 110, ../sass/search.scss */
+.search-bar-form2 {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+  transition-property: width, height, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* line 120, ../sass/search.scss */
+.overlay {
+  position: fixed;
+  top: 1;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 50;
+  pointer-events: none;
+  transition: opacity 0.5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* line 133, ../sass/search.scss */
+.search-bar-submit {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  text-indent: 100px;
+  overflow: hidden;
+  right: 0;
+  top: 50%;
+  background: transparent url(../img/magnifier.svg) no repeat center center;
+  background-size: 100%;
+  border: none;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  transform: translate3d(-30px, -50%, 0) scale3d(0, 0, 1);
+}
+/* line 150, ../sass/search.scss */
+.search-bar-submit:focus {
+  outline: none;
+}
+
+/* line 155, ../sass/search.scss */
+.search-bar-submit2 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  text-indent: 100px;
+  overflow: hidden;
+  right: 0;
+  top: 50%;
+  background: transparent url(../img/magnifier.svg) no repeat center center;
+  background-size: 100%;
+  border: none;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  transform: translate3d(-30px, -50%, 0) scale3d(0, 0, 1);
+}
+/* line 172, ../sass/search.scss */
+.search-bar-submit2:focus {
+  outline: none;
+}
+
+/* line 177, ../sass/search.scss */
+.result-submit {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  text-indent: 100px;
+  overflow: hidden;
+  right: 0;
+  top: 50%;
+  background: transparent url(../img/magnifier.svg) no repeat center center;
+  background-size: 100%;
+  border: none;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  transform: translate3d(-30px, -50%, 0) scale3d(0, 0, 1);
+}
+/* line 193, ../sass/search.scss */
+.result-submit:focus {
+  outline: none;
+}
+
+/* line 198, ../sass/search.scss */
+.search-bar {
+  float: left;
+  width: 500px;
+  min-height: 40px;
+  background: #f1f1f1;
+  position: absolute;
+  z-index: 10000;
+  top: 50px;
+  right: 50px;
+  transform-origin: 100% 0;
+  transition-property: min-height, width, top, right;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+/* line 212, ../sass/search.scss */
+.search-bar.open {
+  width: 100%;
+  min-height: 100%;
+  top: 0px;
+  right: 0px;
+  /* .expand-enter defines the starting state for entering */
+  /* .expand-leave defines the ending state for leaving */
+}
+/* line 218, ../sass/search.scss */
+.search-bar.open .search-bar-form {
+  width: 80%;
+  height: 160px;
+  transform: translate3d(0, 3em, 0);
+}
+/* line 224, ../sass/search.scss */
+.search-bar.open .search-bar-input {
+  font-size: 7em;
+}
+/* line 228, ../sass/search.scss */
+.search-bar.open ~ .overlay {
+  opacity: 50;
+}
+/* line 232, ../sass/search.scss */
+.search-bar.open .result-wrap {
+  opacity: 1;
+  height: auto;
+  overflow: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s 0.5s;
+}
+/* line 239, ../sass/search.scss */
+.search-bar.open .result-wrap:first-child {
+  transition-timing-function: ease-in-out;
+  transition-delay: .5s;
+}
+/* line 244, ../sass/search.scss */
+.search-bar.open .result-wrap:nth-child(2) {
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s;
+}
+/* line 249, ../sass/search.scss */
+.search-bar.open .result-wrap:nth-child(3) {
+  transition-timing-function: ease-in-out;
+  transition-delay: 2s;
+}
+/* line 256, ../sass/search.scss */
+.search-bar.open .search-bar-submit {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate3d(-30px, -50%, 0) scale3d(1, 1, 1);
+  transition: 0.5s all linear;
+  transition-delay: 0.1s;
+}
+/* line 264, ../sass/search.scss */
+.search-bar.open .search-bar-submit:hover {
+  background-color: #555;
+}
+/* line 270, ../sass/search.scss */
+.search-bar.open .search-bar-close {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale3d(1, 1, 1);
+  transition: opacity 0.3s, transform 0.3s;
+  transition-delay: 0.5s;
+}
+/* line 278, ../sass/search.scss */
+.search-bar.open .expand-transition {
+  transition: all 1s ease;
+  overflow: hidden;
+}
+/* line 285, ../sass/search.scss */
+.search-bar.open .expand-enter, .search-bar.open .expand-leave {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
+}
+
+/* line 293, ../sass/search.scss */
+.search-bar2 {
+  float: left;
+  width: 500px;
+  min-height: 40px;
+  background: #f1f1f1;
+  position: absolute;
+  z-index: 10000;
+  top: 400px;
+  right: 50px;
+  transform-origin: 100% 0;
+  transition-property: min-height, width, top, right;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+/* line 307, ../sass/search.scss */
+.search-bar2.open {
+  width: 100%;
+  min-height: 100%;
+  top: 0px;
+  right: 0px;
+  /* .expand-enter defines the starting state for entering */
+  /* .expand-leave defines the ending state for leaving */
+}
+/* line 313, ../sass/search.scss */
+.search-bar2.open .search-bar-form2 {
+  width: 80%;
+  height: 160px;
+  transform: translate3d(0, 3em, 0);
+}
+/* line 319, ../sass/search.scss */
+.search-bar2.open .search-bar-input2 {
+  font-size: 7em;
+}
+/* line 323, ../sass/search.scss */
+.search-bar2.open ~ .overlay {
+  opacity: 1;
+}
+/* line 327, ../sass/search.scss */
+.search-bar2.open .result-wrap {
+  opacity: 1;
+  height: auto;
+  overflow: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s 0.5s;
+}
+/* line 334, ../sass/search.scss */
+.search-bar2.open .result-wrap:first-child {
+  transition-timing-function: ease-in-out;
+  transition-delay: .5s;
+}
+/* line 339, ../sass/search.scss */
+.search-bar2.open .result-wrap:nth-child(2) {
+  transition-timing-function: ease-in-out;
+  transition-delay: 1s;
+}
+/* line 344, ../sass/search.scss */
+.search-bar2.open .result-wrap:nth-child(3) {
+  transition-timing-function: ease-in-out;
+  transition-delay: 2s;
+}
+/* line 351, ../sass/search.scss */
+.search-bar2.open .search-bar-submit2 {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate3d(-30px, -50%, 0) scale3d(1, 1, 1);
+  transition: 0.5s all linear;
+  transition-delay: 0.1s;
+}
+/* line 358, ../sass/search.scss */
+.search-bar2.open .search-bar-submit2:hover {
+  background-color: #555;
+}
+/* line 363, ../sass/search.scss */
+.search-bar2.open .search-bar-close {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale3d(1, 1, 1);
+  transition: opacity 0.3s, transform 0.3s;
+  transition-delay: 0.5s;
+}
+/* line 371, ../sass/search.scss */
+.search-bar2.open .expand-transition {
+  transition: all 1s ease;
+  overflow: hidden;
+}
+/* line 378, ../sass/search.scss */
+.search-bar2.open .expand-enter, .search-bar2.open .expand-leave {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
+}
+
+/* line 386, ../sass/search.scss */
+.requirement-text {
+  float: left;
+  width: 1000px;
+  min-height: 200px;
+  background: #f1f1f1;
+  position: absolute;
+  z-index: 10000;
+  top: 50px;
+  left: 50px;
+  transform-origin: 100% 0;
+  transition-property: min-height, width, top, right;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* line 401, ../sass/search.scss */
+.specification-text {
+  float: left;
+  width: 1000px;
+  min-height: 200px;
+  background: #f1f1f1;
+  position: absolute;
+  z-index: 10000;
+  top: 400px;
+  left: 50px;
+  transform-origin: 100% 0;
+  transition-property: min-height, width, top, right;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* line 416, ../sass/search.scss */
+.search-bar-close {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  overflow: hidden;
+  text-indent: 100%;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale3d(0, 0, 1);
+}
+/* line 429, ../sass/search.scss */
+.search-bar-close::before, .search-bar-close::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  border-radius: 3px;
+  opacity: 0.2;
+  background: #000;
+}
+/* line 441, ../sass/search.scss */
+.search-bar-close::before {
+  transform: rotate(45deg);
+}
+/* line 445, ../sass/search.scss */
+.search-bar-close::after {
+  transform: rotate(-45deg);
+}
+/* line 450, ../sass/search.scss */
+.search-bar-close:hover::before, .search-bar-close:hover::after {
+  opacity: 1;
+}
+
+/* line 456, ../sass/search.scss */
+.search-bar-input {
+  width: 100%;
+  height: 100%;
+  padding: 0 10% 0 10px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  font-size: 0.8em;
+  color: #ec5a62;
+  transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+/* line 467, ../sass/search.scss */
+.search-bar-input::placeholder {
+  color: #c2c2c2;
+}
+/* line 471, ../sass/search.scss */
+.search-bar-input::clear {
+  display: none;
+}
+/* line 475, ../sass/search.scss */
+.search-bar-input:focus {
+  outline: none;
+}
+
+/* line 480, ../sass/search.scss */
+.search-bar-input2 {
+  width: 100%;
+  height: 100%;
+  padding: 0 10% 0 10px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  font-size: 0.8em;
+  color: #ec5a62;
+  transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+/* line 491, ../sass/search.scss */
+.search-bar-input2::placeholder {
+  color: #c2c2c2;
+}
+/* line 495, ../sass/search.scss */
+.search-bar-input2::clear {
+  display: none;
+}
+/* line 499, ../sass/search.scss */
+.search-bar-input2:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 53.125em) {
+  /* line 505, ../sass/search.scss */
+  .search-bar-input {
+    padding: 0 25% 0 10px;
+  }
+
+  /* line 510, ../sass/search.scss */
+  .search-bar.open .search-bar-input {
+    font-size: 2em;
+  }
+  /* line 514, ../sass/search.scss */
+  .search-bar.open .search-bar-submit {
+    transform: translate3d(0, -50%, 0) scale3d(0.5, 0.5, 1);
+  }
+}
+@media screen and (max-width: 60.525em) {
+  /* line 522, ../sass/search.scss */
+  .search-bar {
+    width: 80%;
+    top: 10%;
+    right: 10%;
+  }
+}
